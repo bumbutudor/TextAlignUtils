@@ -1,0 +1,289 @@
+<!-- 11.8.16 14:36  v1.2 -->
+
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>AAConv User's Guide</title>
+    <style type="text/css">
+        pre {
+            padding: 5px;
+            background-color: #e0e0e0
+        }
+        
+        h3,
+        h4 {
+            text-decoration: underline;
+        }
+        
+        a {
+            text-decoration: none;
+        }
+        
+        a.noborder {
+            border: 0px
+        }
+        
+        a.noborder:hover {
+            border: 0px
+        }
+        
+        a.none {
+            border: 1px solid white;
+        }
+        
+        a.none {
+            border: 1px solid white;
+        }
+        
+        a.none:hover {
+            border: 1px solid white;
+        }
+        
+        a {
+            border: 1px solid white;
+        }
+        
+        a:hover {
+            border: 1px solid black;
+        }
+        
+        a.noborder {
+            border: 0px
+        }
+        
+        a.noborder:hover {
+            border: 0px
+        }
+
+        .font_imgs {
+    		display: inline-block;
+    		margin-left: auto;
+    		margin-right: auto;
+    		
+		}
+		#font_images{
+   			text-align:center;
+		}
+
+		.dictionary_imgs {
+    		display: inline-block;
+    		margin-left: auto;
+    		margin-right: auto;
+		}
+		#dictionary_images{
+   			text-align:center;
+		}
+    </style>
+</head>
+
+<body bgcolor=#F6F5EB>
+    <h2><center>AAConv <br>Un set de instrumente software pentru automatizarea procesului de transliterare</center></h2>
+
+    <blockquote><br /> <!-- img src="http://i.imgur.com/e9Nookj.png" -->
+        <h3><a name="abstract" class="none" id="abstract">Caracteristici generale</a></h3><b>AAConv</b>
+        <a name="shot" href="#example" class="none" id="shot"><img src="imgs/exif.png" border="0"  align="right" vspace="20" hspace="20" alt="Reading Exif data in FileMaker" title="Reading Exif data in FileMaker" /></a> reprezintă un set de instrumente dezvoltate într-un limbaj cross-platform ce permite convertarea textelor din grafia chirilică în cea latină, și, respectiv, viceversa. Însăși aplicația de convertare AAConv este scrisă în întregime în <a href="https://en.wikipedia.org/wiki/Java_(programming_language)">Java</a>, deci este o aplicație cross-platformă și poate fi executată pe orice sistem de operare Windows, Linux sau OS-X.
+        <p>Pentru a utiliza <b>AAConv</b> este necesar să fie instalată doar mașina virtuală <a href="https://en.wikipedia.org/wiki/Java_virtual_machine">JVM</a>. Aplicația <em>nu</em> necesită nici un compilator sau interpretator în afară de 
+         <a href="https://en.wikipedia.org/wiki/Java_Development_Kit">JRE-ul</a> (1.7 sau mai nou), care conține și JVM-ul necesar.
+        </p>
+        <p>Aplicația a fost testată pe platforma <a href="http://www.microsoft.com/windows/default.mspx">Microsoft Windows</a> (începând cu <a href="https://en.wikipedia.org/wiki/Windows_XP">XP</a>), pe platforma linux, și anume <a href="https://en.wikipedia.org/wiki/Ubuntu_(operating_system)">Ubuntu</a>, cât și pe platforma <a href="http://www.apple.com/macosx/">Mac OS X</a>. Așa cum aplicația se rulează pe mașina virtuală Java, ea nu va depinde de compatibilitatea cu arhitectura <a href="https://en.wikipedia.org/wiki/X86">x86</a>, deci se va rula <em>nu doar</em> pe mașinile IBM PC-compatibile
+        </p>
+        <p>Codul sursă al aplicației încă nu este distribuit sub nici o licență open-source precum <a href="http://www.opensource.org/licenses/bsd-license.php">BSD-style license</a>, dar în viitor poate fi posibil acest lucru.
+        </p>
+    </blockquote><br />
+
+    <h3><a class="none" name="contents" id="contents">Conținut</a></h3>
+    <ol>
+        <li><a href="#require">Cerințe</a></li>
+		<li><a href="#download">Descarcă</a></li>
+        <li><a href="#prepare">Pregătire</a></li>
+        <li><a href="#example">Interfața gafică a aplicației</a></li>
+        <li><a href="#step">Structura de meniuri și funcționalitățile aplicțației</a></li>
+        <li><a href="#howto">Ghidul utilizatorului</a>
+            <ul>
+                <li><a href="#howIntroText">Cum să introduc un text chirilic în convertor?</a></li>
+                <li><a href="#howIntro">Cum să transliterez un text chirilic utilizînd convertorul AAConv?</a></li>
+                <li><a href="#howPeriod">Cum să aleg perioada istorică a textului convertat?</a></li>
+                <li><a href="#howSave">Cum să salvez textul latin obținut?</a></li>
+                <li><a href="#howDictionary">Cum să modific componența dicționarului de excepții al convertorului?</a></li>
+            </ul>
+        </li>
+        <!--
+        <li><a href="#objects">How FileMaker data is represented and manipulated</a></li>
+        <li><a href="#functions">Defining plug-in functions</a></li>
+        <li><a href="#deliver">Creating the plug-in</a></li>
+        <li><a href="#index">Symbol index</a></li>
+        -->
+        
+    </ol><br />
+
+    <h3><a name="require" class="none" id="require">Cerințe</a></h3>Se presupune că utilizatorul are experiență cu lucrul în software de oficiu precum <a href="https://en.wikipedia.org/wiki/Microsoft_Word">MS Office Word</a> sau oricare alte editoare de text (Libre Office, Open Office etc). Pentru a putea rula aplicația este dorit să ca utilizatorul să dețină o mașină de calcul IBM PC-compatibilă, dar asta nu este absolut necesar. Absolut necesar va fi să să fie instalat Java Runtime Environment <a href="https://en.wikipedia.org/wiki/Java_Development_Kit">JRE-ul</a> (1.7 sau mai nou), care poate fi descărcat de pe site-ul oficial <a href="http://www.oracle.com/technetwork/java/javase/downloads/jre8-downloads-2133155.html">Oracle</a>. Deci este necesar să fie prezentă mașina virtuală Java. Acestea sunt cerințele necesare pentru a putea utiliza în plină măsură aplicația de convertare <b>AAConv</b>.<br /> <br />
+
+
+    <h3><a name="download" class="none" id="download">Descarcă</a></h3>La moment utlima versiune a aplicației AAConv se află în liber acces, și respectiv poate fi descărcată pe link-ul de mai jos. Versiunea currentă a aplicației este v1.6, dar se află în continuă dezvoltare. <font color="red">Link-ul către aplicație:</font> <a href="https://drive.google.com/open?id=0BzWDiaLG9aHRT19FRm83Y0JRUVk">AAConv.zip</a> <br /> <br />
+
+    <h3><a name="prepare" class="none" id="prepare">Pregătire</a></h3> Odată ce zip-arhiva a fost descărcată și respectiv dezarhivată, utilizatorul va obține următoarele fișiere ale aplicației:
+    <ul>
+        <li>AAConv.jar - fișierul executabil ce pornește aplicația de convertare;</li>
+        <li>Dictionary.txt -  dicționarul de cuvinte în care se stochează excepțiile algoritmului de convertare, în formatul "cuvînd chirilic"/"cuvînt latin", și au prioritate superioară în procesul convertării. Utilizatorul poate adăuga, modifica sau șterge cuvinte din dicționar direct din fereastra principală a aplicației;</li>
+        <li>Prefixes.txt - fișierul în care se stochează o bază de date de prefixe al limbii române, care are aport la corectitudinea transliterării unor cuvinte (în special celor ce conțin litera "â");</li>
+        <li>confif.properties - fișierul în care se stochează configurațiile de sistemă ale aplicației, precum fontul ales sau mărimea lui;</li>
+        <li>Mapa "Fonts" conține font-urile necesare pentru reprezentarea corectă al textelor ce conțin caractere slavone. La prima pornire a aplicației font-urile din mapa dată se vor instala automat dacă nu vor fi găsite prezente în mașina de calcul al utilizatorului;</li>
+        <li>Mapa "lib" conține librăriile necesare pentru procesarea fișierelor <b>*.docx *.doc</b> și <b>*.rtf</b>.</li></ul>
+    Acestea sunt fișierele ce se conțin în distributivul oficial al aplicației AAConv. Cu timpul aplicația va fi dezvoltată și componența fișierelor, evident, va fi modificată. 
+    <br /> 
+
+
+    <h3><a name="example" class="none" id="example">Interfața gafică a aplicației</a></h3>
+	<p>Interfața grafică a aplicației AAConv are structura următoare - fereastra principală este împărțită în 2 panouri ce servesc ca containere și editoare de text. Panoul din stânga (left panel) este purtătorul de text chirillic iar panoul din dreapta (right panel) este purtătorul de text transliterat latin.</p>
+
+	<!--img src="http://i.imgur.com/rJVvGTt.png" -->
+	<center><img src="imgs/screen2.png" border="0" align="center" vspace="20" hspace="20" /></center>
+	<br />
+
+	<!--img src="http://i.imgur.com/yUrq7hB.png"-->
+	<h3><a name="step" class="none" id="step">Structura de meniuri și funcționalitățile aplicțației</a></h3>
+	<center><img src="imgs/settigs_menu.png" width="441" height="381" border="0" align="center" vspace="20" hspace="20" /></center>
+
+    <ul>
+        <li><b>„Cyrillic to Latin”</b> sau <b>„Latin to Cyrillic”</b> – direcția generală a transliterării, din chirilică în latină sau invers. Aplicația permite transliterarea din latină în chirilică, doar cu unele mici dezavantaje: așa cum „chirilizarea” nu a fost scopul principal la realizarea aplicației date, algoritmul de transliterare din grafia latină în cea chirilică nu a fost încă perfecționat. Așadar rata erorii la transliterarea din latină în chirilică este semnificabil de majoră. Pe de altă parte, rata erorii la transliterarea inversă – din chirilică în latină – este nesemnificativă, nu întrece 0.01%;</li>
+        
+        <li><b>„Translate without actualization”</b> sau <b>„Translate and actualize the text”</b> - funcția ce permite utilizatorului să aleagă dacă dorește să actualizeze ortografia textului chirilic inițial la legile ortografice contemporane ale limbii române, sau nu. Spre exemplu cuv. <b>„трэеск”</b> fără actualizare va rămîne exact <b>„trăesc”</b>, iar cu actualizare <b>„trăiesc”</b> </li>
+
+        <li><b>„Auto-Set Input Type”</b> – funcția dată procesează automat textul introdus de către utilizator și decide din ce perioadă istorică face parte, transliterând-ul conform algoritmului necesar. Așadar utilizatorul nu trebuie numaidecât să știe de algoritm să selecteze, funcția dată poate decide automat, judecând după conținutul textului introdus. Evident, utilizatorul poate porni sau opri funcția dată bifând sau nu checkbox-ul respectiv (by default el este bifat);</li>
+        
+        <li><b>„Preserve initial text formatting”</b> - funcția ce permite utilizatorului să păstreze formatarea textului inițial în timpul convertării dintr-o grafie în alta. Astfel sunt păstrate paragrafele, aliniatele, stilul și mărimea caracterelor, imaginile, tabelele, formulele etc. </li>
+
+        <li><b>„Moldavian Cyrillic (sec. XX)”</b>, <b>„Tranzitional Cyrillic (sec. XIX)”</b>, <b>„Romanian Cyrillic (sec. XVIII–XIX)”</b> sau <b>„Romanian Cyrillic (sec. XVII)”</b> – reprezintă cele patru perioade istorice din care pot face parte textele chirilice spre transliterare. Utilizatorul poate selecta oricare din aceste trei perioade și apoi introduce textul său dorit, sau poate bifa celula de mai sus (<b>Auto-Set Input Type</b>) și aplicația singură va decide ce fel de text a fost introdus și îl va translitera conform algoritmului necesar;  </li>
+        
+        <li><b>„Old “ы -> î” Standard”</b> sau <b>„New “ы -> â” Standard”</b> – reprezintă cele două standarde de scriere a literei â. Conform legilor noi introduse în DEX litera „â” urmează să fie scrisă nu doar în cuvintele ce au rădăcina „rom” (precum <b>românie, aromân</b>) ci în toate cuvintele ce până acum erau scrise cu litera „î” cu excepția celor ce încep sau sfârșesc cu litera „î”, sau conțin un prefix înainte de ea (precum neînțeles). Așadar utilizatorul are posibilitatea să aleagă ce standard dorește să respecte algoritmul de transliterare  cel mai nou, descris anterior, sau așa cum a fost până la introducerea standardului nou (<b>când – cînd</b>).</li>
+    </ul>
+    
+    <br />
+    <!--img src="http://i.imgur.com/nfjSpzX.png"-->
+    <center><img src="imgs/translate_menu.png" width="264" height="196" border="0" align="center" vspace="20" hspace="20" /></center>
+	<br />
+	<ul>
+		<li><b>„Get Translated”</b> – transliterează textul de pe panoul din stânga (panoul chirilic) conform algoritmului selectat de către utilizator (selectarea are loc în compartimentul Settings). Așadar utilizatorul poate manual să introducă text de la tastieră sau să facă paste la un text chirilic pe panoul din stânga al aplicației, să dea click pe butonul dat și va obține pe panoul din dreapta textul respectiv transliterat;</li>
+		<li><b>„Open Text in Word”</b> – funcția dată salvează într-un fișier textul transliterat (de pe panoul din dreapta) și îl deschide cu MS Office Word, dacă acesta este instalat în calculatorul utilizatorului. Funcția dată permite utilizatorului într-un click să obțină textul transliterat în Office Word pentru a-l putea controla cu spellcheck-erul la greșelile ortografice care ar putea rezulta în urma transliterării;</li>
+		<li><b>„Select Font”</b> – funcția dată permite utilizatorului să selecteze font-ul dorit pentru fiecare din panelele de text (pentru cel cu text chirilic și cel cu text latin). Apăsând pe butonul dat se va deschide fereastra din figura de mai jos.</li>
+	</ul>
+	<br />
+    <!-- <center><img src="imgs/select_font.png" width="518" height="208" border="0" align="center" vspace="20" hspace="20" /></center>
+    <center><img src="imgs/jfontchooser.png" width="670" height="422" border="0" align="center" vspace="20" hspace="20" /></center> -->
+
+    <div id="font_images"> <!-- src="http://i.imgur.com/XOkwjuE.png"    src="http://i.imgur.com/9acBbsQ.png" -->
+		<img class="font_imgs" border="0" alt="Mail" src="imgs/select_font.png" width="518" height="208"/>
+
+    	<img class="font_imgs" border="0" alt="Facebook" src="imgs/jfontchooser.png" width="670" height="422"/>
+    </div>
+
+	<br />
+   	<p>Așadar, utilizatorul apăsând pe oricare din butoanele <b>„CHANGE LEFT PANEL FONT”</b> sau <b>„CHANGE RIGHT PANEL FONT”</b> va accesa fereastra ce-i va permite să selecteze fontul, stilul și mărimea dorită. Totodată este prezentă și o previzualizare a fontului selectat. Apăsînd pe oricare din aceste două butoane se va deschide ferastra <b>„Select Font”</b> de mai jos.
+	Fonturile selectate se voi păstra în fișierul config al aplicației, așadar la următoarea pornire a aplicației ele se vor păstra așa cum au fost selectat. Dacă utilizatorul dorește să reîntoarcă setările inițiale ale aplicației – atunci este de ajuns să dea click pe butonul <b>„RESET TO DEFAULT”</b>.</p>
+ 
+    <!-- img src="http://i.imgur.com/5hmiM4t.png"  -->
+
+	<p>Aplicația <b>AAConv</b> permite introducerea fișierelor cu text prin intermediul ferestrei standarde 
+	<i>JFileChooser</i>, cât și prin „aruncarea” fișierelor direct pe interfața grafică a aplicației. Deci, cel mai recent, a fost implementată funcția Drag’n Drop, care ușurază considerabil lucrul utilizatorului cu utilajul software dat. Aplicația permite citirea fișierelor de format text cu extensia <i>.DOCX, .DOC, .RTF .TXT.</i> Toate fișierele cu altă extensie nu sunt acceptate la filtrate, și deci nu vor fi procesate. </p>
+    
+    <br /><br />
+
+	<center><h1><a name="howto" class="none" id="howto">Ghidul utilizatorului</a></h1>
+	<p>Mai jos este prezentat succint ghidul utilizatorului, și anume răspunsurile la cele mai frecvente întrebări adresate (FAQ).</p> <br />
+	</center>
+ 	
+    <h3><a name="howIntroText" class="none" id="howIntroText">Cum să introduc un text chirilic în convertor?</a></h3>
+    <ul><p>Există 3 metode de a introduce un text chirilic în convertorul AAConv: </ul> 
+    <ul>
+    	<li>Introducerea textului accesînd submeniul <b>File -> Open Document</b>. Se va deschide fereastra standartă <i>JFileChooser</i> de unde poate fi selectat fișierul cu textul chirilic necesar. Aplicația permite citirea fișierelor de format text cu extensia <b>.DOCX, .DOC, .RTF .TXT.</b> Toate fișierele cu altă extensie nu sunt acceptate la filtrate, și deci nu vor fi procesate.<br /> <img src="imgs/Picture5.png" border="0" align="center" vspace="20" hspace="20"/> 
+    	</li>
+    	
+    	<li><p>Introducerea textului prin metoda <b>Drag’n Drop</b>, deci aruncarea fișierului cu text pe suprafața interfeței grafice a convertorului. Vor fi acceptate și ulterior procesate doar fișierele text cu extensia <b>.DOCX, .DOC, .RTF .TXT.</b>. Fișierele cu altă extensie nu vor fi procesate.<br />
+    	<img src="imgs/DragnDrop.png" width="532" height="328" border="0" align="center" vspace="20" hspace="20"/>
+    	</p></li>
+
+    	<li><p>Introducerea textului chirilic prin tipărirea manuală de la tastatură. În acest mod poate fi atît introdus un text chirilic de la tastatură, cît și corectat sau modificat textul deja introdus dintr-un fișier extern.<br />
+    	<img src="imgs/IntroText.png" border="0" align="center" vspace="20" hspace="20"/>
+    	</p></li>
+    </ul>
+    </p>
+
+    <br />
+
+	<h3><a name="howIntro" class="none" id="howIntro">Cum să transliterez un text chirilic utilizînd convertorul AAConv?</a></h3>
+	<ul><p>Pentru a converta textul chirilic introdus (de la tastatură sau prin oricare altă metodă sescrisă mai sus) este necesar de accesat submeniul <b>Translate -> Get Translated</b>. 
+		Astfel, tot textul de pe panelul din stînga va fi convertat în grafia latină.<br />
+			<img src="imgs/GetTranslated.png" border="0" align="center" vspace="20" hspace="20"/>
+	</p></ul>
+
+
+	<br />
+
+
+	<h3><a name="howPeriod" class="none" id="howPeriod">Cum să aleg perioada istorică a textului convertat?</a></h3>
+	<p>Pentru a alege perioada istorică corespunzătoare textului introdus este necesar de accesat submeniul <b>Settings</b> și de ales una din perioadele istorice disponibile:
+	<ul>
+		<li>Moldavian Cyrillic (sec. XX)</li>
+		<li>Tranzitional Cyrillic (sec. XIX)</li>
+		<li>Romanian Cyrillic (sec. XVIII)</li>
+		<li>Romanian Cyrillic (sec. XVII)</li>
+		<br />
+		Selectînd oricare din aceste perioade istorice textul introdus va fi convertat conform algoritmului respectiv. Dacă nu sunteți sigur din ce perioadă istorică face parte textul introdus, atunci asigurați-vă că este bifată căsuța <b>Auto-Set Input Type</b> și introduceți textul încă o dată prin oarecare metodă descrisă mai sus. Astfel, convertorul singur va detecta din ce perioadă istorică face parte textul introdus și îl va converta conform algoritmului cel mai potrivit.
+		<br />
+		<img src="imgs/GetPeriod.png" border="0" align="center" vspace="20" hspace="20"/>
+	</ul>
+	</p>
+	
+	<br />
+
+    <h3><a name="howSave" class="none" id="howSave">Cum să salvez textul latin obținut?</a></h3>
+    <p><ul>Pentru a salva textul latin obținut este necesar de accesat submeniul <b>File -> Save Document</b>. <br />
+    	<img src="imgs/SaveFile.png" border="0" align="center" vspace="20" hspace="20"/> <br />
+    	Se va deschide fereastra standartă <i>JFileChooser</i> unde va putea fi selectat numele și formatul fișierului dorit în care se va salva textul latin. Dacă doriți să păstrați formatarea inițială a textului introdus (paragrafele, aliniatele, stilul și mărimea caracterelor etc) atunci aigurați-vă că este bifată căsuța <b>Preserve Initial Text Fromatting</b> din submeniul <b>Settings</b> și atunci salvați textul în modul descris mai sus. 
+    	<br />
+    	<img src="imgs/SaveFile_JChooser.png" border="0" align="center" vspace="20" hspace="20"/>
+    </ul></p>
+
+    <br />
+
+    <h3><a name="howDictionary" class="none" id="howDictionary">Cum să modific componența dicționarului de excepții al convertorului?</a></h3>
+    <p><ul>Convertorul AAConv conține cîte un dicționar de excepții pentru fiecare perioadă istorică, iar dicționarul poate fi ușor modificat sau actualizat de către utilizator. Așadar utilizatorul poate introduce cuvinte în dicționarul de excepții, poate actualiza cuvintele deja existente în dicționar (cu alte cuvinte propune o varinată mai potrivită de transliterare pentru un oarecare cuvînt chirillic), sau poate șterge oricare cuvînt din dicționar. Toate aceste acțiuni pot fi întreprinse accesînd submeniul <b>Edit</b> și respectiv <b>New Record, Update Record</b> sau <b>Delete Record</b> </ul>.</p>
+
+    <div id="dictionary_images"> 
+		<img class="dictionary_imgs" border="0" src="imgs/NewRecord.png" />
+		&nbsp
+
+    	<img class="dictionary_imgs" border="0" src="imgs/UpdRecord.png" />
+    	&nbsp
+    	<img class="dictionary_imgs" border="0" src="imgs/DelRecord.png" />
+    </div>
+
+
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+    <!-- 
+    <p><br />[Method]<br /><a name="add-data" class="none" id="add-data"><b>add-data</b> <i>(binary-data-object binary-data-object) data-type data <tt>&amp;key</tt> start end</i> =&gt; <i>binary-data-object</i></a>
+    </p>
+    <blockquote><br />Adds data from the Lisp vector (of element type <code>(UNSIGNED-BYTE 8)</code>) <code><i>data</i></code> to the stream of data type <code><i>data-type</i></code> (a four-character Lisp string) of <code><i>binary-data-object</i></code>. If <code><i>start</i></code> and/or <code><i>end</i></code> are provided, only the vector data from <code><i>start</i></code> to <code><i>end</i></code> is used - the default is to use the whole vector. For large vectors, the operation is likely to be a tad faster if <code><i>data</i></code> was <a href="http://www.lispworks.com/documentation/lw50/LWRM/html/lwref-652.htm">allocated statically</a>. Returns <code><i>binary-data-object</i></code>.
+    </blockquote>
+ 	End of entry for ADD-DATA -->
+
+
+</body>
+
+</html>
